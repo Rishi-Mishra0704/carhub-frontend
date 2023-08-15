@@ -9,6 +9,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Manrope", sans-serif;
+  overflow-x: hidden;
 }
 
 /* START: General styles */
@@ -39,7 +40,7 @@
 
 /* START: Hero styles */
 .hero {
-  @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
+  @apply flex xl:flex-row flex-col gap-5 relative z-0 mx-auto;
 }
 
 .hero__title {
