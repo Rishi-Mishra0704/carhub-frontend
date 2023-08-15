@@ -1,23 +1,14 @@
-import Image from 'next/image'
+import Image from "next/image";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <div className="hero">
-      <div className="flex-1 pt-36 padding-x">
-        <h1 className="hero__title">
-          Find, book or rent car — quickly and easily
-        </h1>
-        <p className="hero__subtitle">
-          Streamline your car rental experience with our effortless booking
-          process
-        </p>
-      </div>
-      <div className="hero__image-container">
-        <div className="hero__image">
-          <Image src="/hero.png" alt="hero-bg" fill className="object-contain"/>
-        </div> 
-          <div className="hero__image-overlay"/>
-      </div>
+    <div>
+      <Hero />
+      <About />
+      <Contact />
     </div>
-  )
+  );
 }
