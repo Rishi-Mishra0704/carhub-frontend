@@ -1,5 +1,6 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,36 +12,36 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full bg-[#4d79ff] p-4 shadow-md z-50">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <a href="#" className="text-white text-xl font-semibold">
+        <Link href="/" className="text-white text-xl font-semibold">
           Logo
-        </a>
+        </Link>
         <div
           className={`hidden md:flex space-x-4 ${
-            menuOpen ? 'hidden' : ''
+            menuOpen ? "hidden" : ""
           } transition-opacity duration-300 ease-in-out`}
         >
-          <a href="#" className="text-white hover:text-gray-300">
+          <Link href="/" className="text-white hover:text-gray-300">
             Home
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
+          </Link>
+          <Link href="/#about" className="text-white hover:text-gray-300">
             About
-          </a>
-          <div className="relative group">
-            <a href="#" className="text-white hover:text-gray-300">
-              Services
-            </a>
-          </div>
-          <a href="#" className="text-white hover:text-gray-300">
+          </Link>
+          <Link href="/Cars" className="text-white hover:text-gray-300">
+            Cars
+          </Link>
+          <Link href="/AddCar" className="text-white hover:text-gray-300">
+            List Car
+          </Link>
+          <Link href="/#contact" className="text-white hover:text-gray-300">
             Contact
-          </a>
+          </Link>
         </div>
         <div className="md:hidden">
-          <button
-            className="text-white"
-            onClick={toggleMenu}
-          >
+          <button className="text-white" onClick={toggleMenu}>
             <svg
-              className={`w-6 h-6 ${menuOpen ? 'hidden' : ''} transition-opacity duration-300 ease-in-out`}
+              className={`w-6 h-6 ${
+                menuOpen ? "hidden" : ""
+              } transition-opacity duration-300 ease-in-out`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -54,7 +55,9 @@ const Navbar = () => {
               />
             </svg>
             <svg
-              className={`w-6 h-6 ${menuOpen ? '' : 'hidden'} transition-opacity duration-300 ease-in-out`}
+              className={`w-6 h-6 ${
+                menuOpen ? "" : "hidden"
+              } transition-opacity duration-300 ease-in-out`}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -72,18 +75,24 @@ const Navbar = () => {
       </div>
       {menuOpen && (
         <div className="md:hidden bg-[#4d79ff] space-y-4 transition-opacity duration-300 ease-in-out">
-          <a href="#" className="block text-white p-2 hover:bg-[#3c64e1]">
+          <Link href="/" className="block text-white p-2 hover:bg-[#3c64e1]">
             Home
-          </a>
-          <a href="#" className="block text-white p-2 hover:bg-[#3c64e1]">
+          </Link>
+          <Link
+            href="/#about"
+            className="block text-white p-2 hover:bg-[#3c64e1]"
+          >
             About
-          </a>
-          <a href="#" className="block text-white p-2 hover:bg-[#3c64e1]">
-            Services
-          </a>
-          <a href="#" className="block text-white p-2 hover:bg-[#3c64e1]">
+          </Link>
+          <Link href="/AddCar" className="block text-white p-2 hover:bg-[#3c64e1]">
+            List Car
+          </Link>
+          <Link
+            href="/#contact"
+            className="block text-white p-2 hover:bg-[#3c64e1]"
+          >
             Contact
-          </a>
+          </Link>
         </div>
       )}
     </nav>

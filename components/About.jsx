@@ -3,7 +3,7 @@ import { FaShieldAlt, FaMoneyBillWave, FaClock } from 'react-icons/fa';
 
 const About = () => {
   return (
-    <div className="w-full h-screen bg-gray-100 py-12">
+    <div id='about' className="w-full h-screen bg-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-4">
         <h2 className="text-4xl font-extrabold text-gray-900 mb-4 h-12">About Our Car App</h2>
         <p className="text-lg text-gray-600 mb-8">
