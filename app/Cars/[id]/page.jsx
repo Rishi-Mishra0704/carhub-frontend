@@ -1,9 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-const CarsPage = () => {
+const CarsDetailsPage = () => {
   // Sample car data (replace with actual data fetched from API or database)
   const carData = {
+    id: 1,
     name: "Sample Car",
     year: "2023",
     color: "Red",
@@ -19,16 +20,25 @@ const CarsPage = () => {
             {carData.name}
           </h2>
           <div className="border-t border-gray-300 pt-4">
+            <p className="text-gray-700 font-semibold mb-2">
+              Year: {carData.year}
+            </p>
+            <p className="text-gray-700 font-semibold mb-2">
+              Color: {carData.color}
+            </p>
+            <p className="text-gray-700 font-semibold mb-2">
+              Plate Number: {carData.plate_no}
+            </p>
             <p className="text-gray-700 font-semibold mb-4">
               Price: ${carData.price}
             </p>
           </div>
           <div className="mt-8">
             <Link
-              href="/Cars/:id"
+              href="/RentCar"
               className="inline-block bg-blue-500 text-white px-6 py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
             >
-              View More
+              Rent This Car
             </Link>
           </div>
         </div>
@@ -37,4 +47,4 @@ const CarsPage = () => {
   );
 };
 
-export default CarsPage;
+export default CarsDetailsPage;
