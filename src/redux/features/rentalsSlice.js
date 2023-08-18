@@ -62,5 +62,3 @@ const rentalsSlice = createSlice({
 
 export default rentalsSlice.reducer;
 
-// Export async thunks for use in components
-export { fetchRentals, createRental, deleteRental };

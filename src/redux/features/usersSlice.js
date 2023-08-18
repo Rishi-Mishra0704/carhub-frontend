@@ -1,66 +1,84 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 const initialState = {
   users: [],
   user: null,
-  status: 'idle',
+  status: "idle",
   error: null,
 };
 
-export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
-  const response = await axios.get('/api/v1/users'); // Adjust the endpoint if needed
+export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
+  const response = await axios.get("http://127.0.0.1:3000/api/v1/users"); // Adjust the endpoint if needed
   return response.data;
 });
 
-export const fetchUserById = createAsyncThunk('users/fetchUserById', async (userId) => {
-  const response = await axios.get(`/api/v1/users/${userId}`);
-  return response.data;
-});
+export const fetchUserById = createAsyncThunk(
+  "users/fetchUserById",
+  async (userId) => {
+    const response = await axios.get(
+      `http://127.0.0.1:3000/api/v1/users/${userId}`
+    );
+    return response.data;
+  }
+);
 
-export const createUser = createAsyncThunk('users/createUser', async (userData) => {
-  const response = await axios.post('/api/v1/users', { user: userData });
-  return response.data;
-});
+export const createUser = createAsyncThunk(
+  'users/postUser',
+  async (userData) => {
+    const response = await fetch('http://localhost:3000/api/v1/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    const data = await response.json();
+    return data;
+  },
+);
 
-export const deleteUser = createAsyncThunk('users/deleteUser', async (userId) => {
-  await axios.delete(`/api/v1/users/${userId}`);
-  return userId;
-});
+export const deleteUser = createAsyncThunk(
+  "users/deleteUser",
+  async (userId) => {
+    await axios.delete(`http://127.0.0.1:3000/api/v1/users/${userId}`);
+    return userId;
+  }
+);
 
 // Create the slice
 const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.users = action.payload;
-        state.status = 'succeeded';
+        state.status = "succeeded";
       })
       .addCase(fetchUserById.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.status = 'succeeded';
+        state.status = "succeeded";
       })
       .addCase(createUser.fulfilled, (state, action) => {
         state.users.push(action.payload);
-        state.status = 'succeeded';
+        state.status = "succeeded";
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
-        state.users = state.users.filter(user => user.id !== action.payload);
-        state.status = 'succeeded';
+        state.users = state.users.filter((user) => user.id !== action.payload);
+        state.status = "succeeded";
       })
       .addMatcher(
-        (action) => action.type.endsWith('/pending'),
+        (action) => action.type.endsWith("/pending"),
         (state) => {
-          state.status = 'loading';
+          state.status = "loading";
         }
       )
       .addMatcher(
-        (action) => action.type.endsWith('/rejected'),
+        (action) => action.type.endsWith("/rejected"),
         (state, action) => {
-          state.status = 'failed';
+          state.status = "failed";
           state.error = action.error.message;
         }
       );
@@ -68,5 +86,3 @@ const usersSlice = createSlice({
 });
 
 export default usersSlice.reducer;
-
-export { fetchUsers, fetchUserById, createUser, deleteUser };

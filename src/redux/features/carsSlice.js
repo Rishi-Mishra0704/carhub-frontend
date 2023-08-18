@@ -71,6 +71,3 @@ const carsSlice = createSlice({
 });
 
 export default carsSlice.reducer;
-
-// Export async thunks for use in components
-export { fetchCars, fetchCarById, createCar, deleteCar };
