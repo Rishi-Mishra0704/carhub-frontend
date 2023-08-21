@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createUser } from '../../redux/features/usersSlice';
 import { fetchCities } from '../../redux/features/citiesSlice';
+import Link from 'next/link';
 
 export const Register = () => {
   const [name, setName] = useState('');
@@ -96,13 +97,14 @@ export const Register = () => {
             {errorMessage}
           </p>
         )}
+        <Link href="/">
         <button
           type="button"
           onClick={handleRegister}
           className="px-6 py-1 rounded-md bg-green-600 hover:bg-green-900 text-white"
         >
           Register
-        </button>
+        </button></Link>
       </form>
     </div>
   );
