@@ -31,16 +31,19 @@ export const Register = () => {
           password,
           city_id: selectedCity,
         };
+        
         dispatch(createUser(userData));
+        
+        localStorage.setItem('user', JSON.stringify(userData));
+        
         console.log('User registered successfully');
-        // You can add any other logic you need after successful registration
       } catch (error) {
         console.error('Error registering user:', error);
       }
     } else {
       setErrorMessage('Please fill in all fields');
     }
-  };
+  };  
 
   return (
     <div className="flex flex-col gap-6 items-center justify-center">

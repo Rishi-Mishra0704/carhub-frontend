@@ -1,13 +1,26 @@
 "use client";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import Link from "next/link";
+import { ImExit } from "react-icons/im";
+
+import { clearUser } from "../redux/features/usersSlice";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+    localStorage.removeItem('user');
+    navigate('/Splash');
+  };
+
 
   return (
     <nav className="fixed top-0 w-full bg-[#4d79ff] p-4 shadow-md z-50">
@@ -20,20 +33,25 @@ const Navbar = () => {
             menuOpen ? "hidden" : ""
           } transition-opacity duration-300 ease-in-out`}
         >
-          <Link href="/" className="text-white hover:text-gray-300">
+          <Link href="/" className="text-white hover:underline">
             Home
           </Link>
-          <Link href="/#about" className="text-white hover:text-gray-300">
+          <Link href="/#about" className="text-white hover:underline">
             About
           </Link>
-          <Link href="/Cars" className="text-white hover:text-gray-300">
+          <Link href="/Cars" className="text-white hover:underline">
             Cars
           </Link>
-          <Link href="/AddCar" className="text-white hover:text-gray-300">
+          <Link href="/AddCar" className="text-white hover:underline">
             List Car
           </Link>
-          <Link href="/#contact" className="text-white hover:text-gray-300">
+          <Link href="/#contact" className="text-white hover:underline">
             Contact
+          </Link>
+          <Link href="/Splash" className="text-white hover:underline">
+            <button onClick={handleLogout} className="flex flex-row justify-around">
+              Sign out <ImExit className="m-1"/>
+            </button>
           </Link>
         </div>
         <div className="md:hidden">
