@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createUser } from '../../redux/features/usersSlice';
 import { fetchCities } from '../../redux/features/citiesSlice';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export const Register = () => {
   const [name, setName] = useState('');
@@ -14,12 +15,17 @@ export const Register = () => {
   const [selectedCity, setSelectedCity] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  const router = useRouter();
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities.cities);
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     dispatch(fetchCities());
-  }, [dispatch]);
+    if(user){
+      router.push('/')
+    }
+  }, [dispatch, user]);
 
   const handleRegister = async () => {
     if (name && address && email && password && selectedCity) {
