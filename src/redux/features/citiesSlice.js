@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const fetchCities = createAsyncThunk('cities/fetchCities', async () => {
-  const response = await axios.get('http://127.0.0.1:3000/api/v1/cities');
+  const response = await axios.get('https://carhub-backend-cxbp.onrender.com/api/v1/cities');
   return response.data;
 });
 

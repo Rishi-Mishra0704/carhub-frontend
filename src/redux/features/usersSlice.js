@@ -9,7 +9,7 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await axios.get("http://127.0.0.1:3000/api/v1/users"); // Adjust the endpoint if needed
+  const response = await axios.get("https://carhub-backend-cxbp.onrender.com/api/v1/users"); // Adjust the endpoint if needed
   return response.data;
 });
 
@@ -17,7 +17,7 @@ export const fetchUserById = createAsyncThunk(
   "users/fetchUserById",
   async (userId) => {
     const response = await axios.get(
-      `http://127.0.0.1:3000/api/v1/users/${userId}`
+      `https://carhub-backend-cxbp.onrender.com/api/v1/users/${userId}`
     );
     return response.data;
   }
@@ -26,7 +26,7 @@ export const fetchUserById = createAsyncThunk(
 export const createUser = createAsyncThunk(
   'users/postUser',
   async (userData) => {
-    const response = await fetch('http://localhost:3000/api/v1/users', {
+    const response = await fetch('https://carhub-backend-cxbp.onrender.com/api/v1/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const createUser = createAsyncThunk(
 export const deleteUser = createAsyncThunk(
   "users/deleteUser",
   async (userId) => {
-    await axios.delete(`http://127.0.0.1:3000/api/v1/users/${userId}`);
+    await axios.delete(`https://carhub-backend-cxbp.onrender.com/api/v1/users/${userId}`);
     return userId;
   }
 );
