@@ -17,15 +17,18 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(clearUser());
-    localStorage.removeItem('user');
-    navigate('/Splash');
+    localStorage.removeItem("user");
+    navigate("/Splash");
   };
 
-
   return (
-    <nav className="fixed top-0 w-full bg-[#4d79ff] p-4 shadow-md z-50">
-      <div className="max-w-6xl mx-auto flex justify-between items-center">
-        <Link href="/" className="text-white text-xl font-semibold">
+    <nav
+      className={`fixed top-0 w-full bg-[#4d79ff] z-50 ${
+        menuOpen ? "h-screen" : "h-auto"
+      }`}
+    >
+      <div className="max-w-6xl h-16 mx-auto flex justify-between items-center">
+        <Link href="/" className="text-white text-2xl font-semibold ml-4">
           Logo
         </Link>
         <div
@@ -33,28 +36,30 @@ const Navbar = () => {
             menuOpen ? "hidden" : ""
           } transition-opacity duration-300 ease-in-out`}
         >
-          <Link href="/" className="text-white hover:underline">
+          <Link href="/" className="text-white text-lg hover:underline">
             Home
           </Link>
-          <Link href="/#about" className="text-white hover:underline">
+          <Link href="/#about" className="text-white text-lg hover:underline">
             About
           </Link>
-          <Link href="/Cars" className="text-white hover:underline">
+          <Link href="/Cars" className="text-white text-lg hover:underline">
             Cars
           </Link>
-          <Link href="/AddCar" className="text-white hover:underline">
+          <Link href="/AddCar" className="text-white text-lg hover:underline">
             List Car
           </Link>
-          <Link href="/#contact" className="text-white hover:underline">
+          <Link href="/#contact" className="text-white text-lg hover:underline">
             Contact
           </Link>
-          <Link href="/Splash" className="text-white hover:underline">
-            <button onClick={handleLogout} className="flex flex-row justify-around">
-              Sign out <ImExit className="m-1"/>
-            </button>
-          </Link>
+
+          <button
+            onClick={handleLogout}
+            className="flex flex-row justify-around text-white text-lg hover:underline"
+          >
+            Sign out <ImExit className="m-1" />
+          </button>
         </div>
-        <div className="md:hidden">
+        <div className="md:hidden mr-4">
           <button className="text-white" onClick={toggleMenu}>
             <svg
               className={`w-6 h-6 ${
@@ -92,25 +97,43 @@ const Navbar = () => {
         </div>
       </div>
       {menuOpen && (
-        <div className="md:hidden bg-[#4d79ff] space-y-4 transition-opacity duration-300 ease-in-out">
-          <Link href="/" className="block text-white p-2 hover:bg-[#3c64e1]">
+        <div className="flex flex-col justify-center my-16 items-center md:hidden bg-[#4d79ff] space-y-4 transition-opacity duration-1000 ease-in-out">
+          <Link
+            href="/"
+            className="block text-white p-2 text-3xl hover:bg-[#3c64e1]"
+          >
             Home
           </Link>
           <Link
             href="/#about"
-            className="block text-white p-2 hover:bg-[#3c64e1]"
+            className="block text-white p-2 text-3xl  hover:bg-[#3c64e1]"
           >
             About
           </Link>
-          <Link href="/AddCar" className="block text-white p-2 hover:bg-[#3c64e1]">
+          <Link
+            href="/Cars"
+            className="block text-white p-2 text-3xl  hover:bg-[#3c64e1]"
+          >
+            Cars
+          </Link>
+          <Link
+            href="/AddCar"
+            className="block text-white p-2 text-3xl  hover:bg-[#3c64e1]"
+          >
             List Car
           </Link>
           <Link
             href="/#contact"
-            className="block text-white p-2 hover:bg-[#3c64e1]"
+            className="block text-white p-2 text-3xl  hover:bg-[#3c64e1]"
           >
             Contact
           </Link>
+          <button
+            onClick={handleLogout}
+            className="flex flex-row justify-around text-white text-3xl hover:underline ml-1"
+          >
+            Sign out <ImExit className="m-1 mx-2" />
+          </button>
         </div>
       )}
     </nav>
