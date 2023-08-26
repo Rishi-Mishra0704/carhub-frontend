@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Link from "next/link";
 import { ImExit } from "react-icons/im";
+import { useRouter } from "next/navigation";
 
 import { clearUser } from "../redux/features/usersSlice";
 
@@ -10,6 +11,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -18,7 +20,7 @@ const Navbar = () => {
   const handleLogout = () => {
     dispatch(clearUser());
     localStorage.removeItem("user");
-    navigate("/Splash");
+    router.push("/Splash");
   };
 
   return (

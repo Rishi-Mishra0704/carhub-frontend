@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createUser } from '../../redux/features/usersSlice';
+import { createUser, setUser } from '../../redux/features/usersSlice';
 import { fetchCities } from '../../redux/features/citiesSlice';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -18,7 +18,7 @@ export const Register = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities.cities);
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.users.user);
 
   useEffect(() => {
     dispatch(fetchCities());
@@ -41,7 +41,7 @@ export const Register = () => {
         dispatch(createUser(userData));
         
         localStorage.setItem('user', JSON.stringify(userData));
-        
+        dispatch(setUser(userData));
         console.log('User registered successfully');
       } catch (error) {
         console.error('Error registering user:', error);

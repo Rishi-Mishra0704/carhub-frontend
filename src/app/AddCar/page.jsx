@@ -1,6 +1,7 @@
 "use client"
 import React, { useState } from 'react';
-
+import { useDispatch } from 'react-redux';
+import { createCar } from '@/src/redux/features/carsSlice';
 const AddCarPage = () => {
   const [carData, setCarData] = useState({
     name: '',
@@ -9,12 +10,12 @@ const AddCarPage = () => {
     plate_no: '',
     price: '',
   });
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can add the logic to send the car data to your backend or handle it as needed.
+    dispatch(createCar(carData));
     console.log('Car data submitted:', carData);
-    // Reset the form after submission
     setCarData({
       name: '',
       year: '',
