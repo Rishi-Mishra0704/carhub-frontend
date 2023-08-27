@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, use } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { ImExit } from "react-icons/im";
@@ -9,13 +9,19 @@ import { clearUser } from "../redux/features/usersSlice";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [userRole, setUserRole] = useState(null);
 
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const storedUser = JSON.parse(localStorage.getItem("user"));
 
-  const userRole = storedUser ? storedUser.role : null;
+  useEffect(() => {
+    if (typeof localStorage !== "undefined") {
+      const storedUser = JSON.parse(localStorage.getItem("user"));
+      setUserRole(storedUser ? storedUser.role : null);
+    }
+  }, []);
+
   console.log(userRole);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
