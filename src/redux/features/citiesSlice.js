@@ -1,6 +1,7 @@
 // citiesSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import url from './url';
 
 const initialState = {
   cities: [],
@@ -9,7 +10,7 @@ const initialState = {
 };
 
 export const fetchCities = createAsyncThunk('cities/fetchCities', async () => {
-  const response = await axios.get('https://carhub-backend-cxbp.onrender.com/api/v1/cities');
+  const response = await axios.get(`${url}api/v1/cities`);
   return response.data;
 });
 

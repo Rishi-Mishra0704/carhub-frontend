@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 export const Register = () => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
+  const [role] = useState('user');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
@@ -28,13 +29,14 @@ export const Register = () => {
   }, [dispatch, user]);
 
   const handleRegister = async () => {
-    if (name && address && email && password && selectedCity) {
+    if (name && address && email && role && password && selectedCity) {
       try {
         const userData = {
           name,
           address,
           email,
           password,
+          role: 'user', // Set the role directly to 'user'
           city_id: selectedCity,
         };
         
@@ -42,6 +44,7 @@ export const Register = () => {
         
         localStorage.setItem('user', JSON.stringify(userData));
         dispatch(setUser(userData));
+        // console.log(userData)
         console.log('User registered successfully');
       } catch (error) {
         console.error('Error registering user:', error);

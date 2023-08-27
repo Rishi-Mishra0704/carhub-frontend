@@ -1,6 +1,7 @@
 // carsSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import url from './url';
 
 // Define the initial state
 const initialState = {
@@ -13,7 +14,7 @@ const initialState = {
 // Define async thunks
 export const fetchCars = createAsyncThunk("cars/fetchCars", async () => {
   const response = await axios.get(
-    "https://carhub-backend-cxbp.onrender.com/api/v1/cars"
+    `${url}api/v1/cars`
   ); // Adjust the endpoint if needed
   return response.data;
 });
@@ -22,14 +23,14 @@ export const fetchCarById = createAsyncThunk(
   "cars/fetchCarById",
   async (carId) => {
     const response = await axios.get(
-      `https://carhub-backend-cxbp.onrender.com/api/v1/cars/${carId}`
+      `${url}api/v1/cars/${carId}`
     );
     return response.data;
   }
 );
 
 export const createCar = createAsyncThunk("cars/createCar", async (carDataWithUser) => {
-  const response = await fetch('https://carhub-backend-cxbp.onrender.com/api/v1/cars', {
+  const response = await fetch(`${url}api/v1/cars`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +43,7 @@ export const createCar = createAsyncThunk("cars/createCar", async (carDataWithUs
 
 export const deleteCar = createAsyncThunk("cars/deleteCar", async (carId) => {
   await axios.delete(
-    `https://carhub-backend-cxbp.onrender.com/api/v1/cars/${carId}`
+    `${url}api/v1/cars/${carId}`
   );
   return carId;
 });

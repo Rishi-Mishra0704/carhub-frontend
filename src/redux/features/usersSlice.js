@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import url from './url';
 
 const initialState = {
   users: [],
@@ -9,7 +10,7 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
-  const response = await axios.get("https://carhub-backend-cxbp.onrender.com/api/v1/users"); // Adjust the endpoint if needed
+  const response = await axios.get(`${url}api/v1/users`);  // Adjust the endpoint if needed
   return response.data;
 });
 
@@ -17,7 +18,7 @@ export const fetchUserById = createAsyncThunk(
   "users/fetchUserById",
   async (userId) => {
     const response = await axios.get(
-      `https://carhub-backend-cxbp.onrender.com/api/v1/users/${userId}`
+      `${url}api/v1/users/${userid}`
     );
     return response.data;
   }
@@ -26,7 +27,7 @@ export const fetchUserById = createAsyncThunk(
 export const createUser = createAsyncThunk(
   'users/postUser',
   async (userData) => {
-    const response = await fetch('https://carhub-backend-cxbp.onrender.com/api/v1/users', {
+    const response = await fetch(`${url}api/v1/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ export const createUser = createAsyncThunk(
 export const deleteUser = createAsyncThunk(
   "users/deleteUser",
   async (userId) => {
-    await axios.delete(`https://carhub-backend-cxbp.onrender.com/api/v1/users/${userId}`);
+    await axios.delete(`${url}api/v1/users/${userid}`);
     return userId;
   }
 );
