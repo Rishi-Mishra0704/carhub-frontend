@@ -18,7 +18,7 @@ export const fetchUserById = createAsyncThunk(
   "users/fetchUserById",
   async (userId) => {
     const response = await axios.get(
-      `${url}api/v1/users/${userid}`
+      `${url}api/v1/users/${userId}`
     );
     return response.data;
   }
@@ -42,7 +42,7 @@ export const createUser = createAsyncThunk(
 export const deleteUser = createAsyncThunk(
   "users/deleteUser",
   async (userId) => {
-    await axios.delete(`${url}api/v1/users/${userid}`);
+    await axios.delete(`${url}api/v1/users/${userId}`);
     return userId;
   }
 );
