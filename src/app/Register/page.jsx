@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { createUser, setUser } from '../../redux/features/usersSlice';
-import { fetchCities } from '../../redux/features/citiesSlice';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { createUser, setUser } from "../../redux/features/usersSlice";
+import { fetchCities } from "../../redux/features/citiesSlice";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const Register = () => {
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [role] = useState('user');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [selectedCity, setSelectedCity] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [role, setRole] = useState("user");
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -23,8 +23,8 @@ export const Register = () => {
 
   useEffect(() => {
     dispatch(fetchCities());
-    if(user){
-      router.push('/')
+    if (user) {
+      router.push("/");
     }
   }, [dispatch, user]);
 
@@ -36,36 +36,37 @@ export const Register = () => {
           address,
           email,
           password,
-          role: 'user', // Set the role directly to 'user'
+          role: role,
           city_id: selectedCity,
         };
-        
+
         dispatch(createUser(userData));
-        
-        localStorage.setItem('user', JSON.stringify(userData));
+
+        localStorage.setItem("user", JSON.stringify(userData));
         dispatch(setUser(userData));
         // console.log(userData)
-        console.log('User registered successfully');
+        console.log("User registered successfully");
       } catch (error) {
-        console.error('Error registering user:', error);
+        console.error("Error registering user:", error);
       }
     } else {
-      setErrorMessage('Please fill in all fields');
+      setErrorMessage("Please fill in all fields");
     }
-  };  
+  };
 
   return (
     <div className="flex flex-col gap-6 items-center justify-center">
-      <h1 className="text-4xl font-bold tracking-widest mt-18">
+      <h1 className="text-4xl h-12 font-bold tracking-widest mt-20">
         JOIN OUR PLATFORM
       </h1>
-      <form className="flex flex-col gap-6 items-center justify-center rounded-md p-8 bg-gray-200">
+      <form className="bg-white h-full p-6 rounded-lg shadow-md">
         <input
           type="text"
           label="Name"
           variant="bordered"
           placeholder="Enter your name"
           value={name}
+          className="w-full my-4 border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           onChange={(e) => setName(e.target.value)}
         />
         <input
@@ -74,6 +75,7 @@ export const Register = () => {
           variant="bordered"
           placeholder="Enter your address"
           value={address}
+          className="w-full my-4  border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           onChange={(e) => setAddress(e.target.value)}
         />
         <input
@@ -82,6 +84,7 @@ export const Register = () => {
           variant="bordered"
           placeholder="Enter your email"
           value={email}
+          className="w-full my-4  border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
@@ -90,10 +93,19 @@ export const Register = () => {
           variant="bordered"
           placeholder="Create your password"
           value={password}
+          className="w-full my-4  border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           onChange={(e) => setPassword(e.target.value)}
         />
         <select
-          className="border rounded-md p-2 mb-2 w-full"
+          className="w-full my-4  border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        >
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+        <select
+          className="w-full my-4  border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           value={selectedCity}
           onChange={(e) => setSelectedCity(e.target.value)}
         >
@@ -110,16 +122,17 @@ export const Register = () => {
           </p>
         )}
         <Link href="/">
-        <button
-          type="button"
-          onClick={handleRegister}
-          className="px-6 py-1 rounded-md bg-green-600 hover:bg-green-900 text-white"
-        >
-          Register
-        </button></Link>
+          <button
+            type="button"
+            onClick={handleRegister}
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+          >
+            Register
+          </button>
+        </Link>
       </form>
     </div>
   );
 };
 
-export default Register
+export default Register;

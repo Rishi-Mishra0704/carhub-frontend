@@ -1,16 +1,16 @@
-"use client"
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
-import { fetchUsers } from '../../redux/features/usersSlice';
-import styles from './login.module.css';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { fetchUsers } from "../../redux/features/usersSlice";
+import styles from "./login.module.css";
 
 const LoginPage = () => {
   const [users, setUsers] = useState([]);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -21,7 +21,7 @@ const LoginPage = () => {
         const fetchedUsers = await dispatch(fetchUsers()).unwrap();
         setUsers(fetchedUsers);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error("Error fetching users:", error);
       }
     };
 
@@ -32,25 +32,28 @@ const LoginPage = () => {
     const foundUser = users.find(
       (user) => user.email === email && user.password === password
     );
-  
+
     if (foundUser) {
-      router.push('/');
+      router.push("/");
     } else {
-      setErrorMessage('Invalid email or password');
+      setErrorMessage("Invalid email or password");
       setTimeout(() => {
-        setErrorMessage('');
+        setErrorMessage("");
       }, 3000); // Hide the error message after 3 seconds
     }
   };
-  
 
   return (
-<div className={styles.container}>
-      <h1 className="text-4xl font-bold tracking-widest mt-18">
-        LOGIN PAGE
+    <div className="flex flex-col gap-6 items-center justify-center mx-6 md:mx-auto md:max-w-md mt-20">
+      <h1 className="text-4xl h-12 font-bold tracking-widest mt-8 md:mt-18">
+        LOGIN
       </h1>
+      <p className="text-gray-600 text-center mb-6 max-w-md">
+        <span className="text-blue-500 font-semibold">Discover</span> the
+        endless possibilities that await you.
+      </p>
       <form
-        className={styles.form}
+        className="bg-white h-full p-6 rounded-lg shadow-md"
         onSubmit={(e) => {
           e.preventDefault();
           handleLogin();
@@ -58,20 +61,27 @@ const LoginPage = () => {
       >
         <input
           type="email"
-          className={styles.input} // Added missing className attribute
+          className="w-full my-4 border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           placeholder="Enter your email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          className={styles.input} // Added missing className attribute
+          className="w-full my-4 border rounded-md px-3 py-2 focus:outline-none focus:border-blue-500"
           placeholder="Enter your password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         {errorMessage && <p className={styles.error_message}>{errorMessage}</p>}
-        <button type="submit" className={styles.button}>Login</button> 
+        <div className="flex flex-col sm:items-center md:block">
+          <button
+            type="submit"
+            className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 "
+          >
+            Login
+          </button>
+        </div>
       </form>
     </div>
   );
