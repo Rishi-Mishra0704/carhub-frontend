@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { ImExit } from "react-icons/im";
 import { useRouter } from "next/navigation";
@@ -13,6 +13,10 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+
+  const userRole = storedUser ? storedUser.role : null;
+  console.log(userRole);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -47,9 +51,30 @@ const Navbar = () => {
           <Link href="/Cars" className="text-white text-lg hover:underline">
             Cars
           </Link>
-          <Link href="/AddCar" className="text-white text-lg hover:underline">
-            List Car
-          </Link>
+          {userRole === "user" && (
+            <Link
+              href="/RentCar"
+              className="block text-white text-lg hover:underline"
+            >
+              Rent Car
+            </Link>
+          )}
+          {userRole === "admin" && (
+            <>
+              <Link
+                href="/AddCar"
+                className="block text-white text-lg hover:underline"
+              >
+                Add Car
+              </Link>
+              <Link
+                href="/RentCar"
+                className="block text-white text-lg hover:underline"
+              >
+                Rent Car
+              </Link>
+            </>
+          )}
           <Link href="/#contact" className="text-white text-lg hover:underline">
             Contact
           </Link>
@@ -114,16 +139,34 @@ const Navbar = () => {
           </Link>
           <Link
             href="/Cars"
-            className="block text-white p-2 text-3xl  hover:bg-[#3c64e1]"
+            className="block text-white p-2 text-3xl hover:bg-[#3c64e1]"
           >
             Cars
           </Link>
-          <Link
-            href="/AddCar"
-            className="block text-white p-2 text-3xl  hover:bg-[#3c64e1]"
-          >
-            List Car
-          </Link>
+          {userRole === "user" && (
+            <Link
+              href="/RentCar"
+              className="block text-white text-3xl hover:underline"
+            >
+              Rent Car
+            </Link>
+          )}
+          {userRole === "admin" && (
+            <>
+              <Link
+                href="/AddCar"
+                className="block text-white text-3xl hover:underline"
+              >
+                Add Car
+              </Link>
+              <Link
+                href="/RentCar"
+                className="block text-white text-3xl hover:underline"
+              >
+                Rent Car
+              </Link>
+            </>
+          )}
           <Link
             href="/#contact"
             className="block text-white p-2 text-3xl  hover:bg-[#3c64e1]"

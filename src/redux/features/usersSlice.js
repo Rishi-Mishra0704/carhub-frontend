@@ -4,7 +4,6 @@ import url from './url';
 
 const initialState = {
   users: [],
-  user: null,
   status: "idle",
   error: null,
 };

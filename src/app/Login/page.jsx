@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import { fetchUsers } from "../../redux/features/usersSlice";
-import styles from "./login.module.css";
+
 
 const LoginPage = () => {
   const [users, setUsers] = useState([]);
@@ -35,6 +35,7 @@ const LoginPage = () => {
 
     if (foundUser) {
       router.push("/");
+      localStorage.setItem("user", JSON.stringify(foundUser));
     } else {
       setErrorMessage("Invalid email or password");
       setTimeout(() => {
