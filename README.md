@@ -28,7 +28,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# Carhub 🤘 <a name="about-project"></a>
+# Carhub 🚗 🏢 <a name="about-project"></a>
 
 The Full Stack CarHub Project: Redefining Car Rentals! Seamlessly built using Ruby on Rails, Next.js, and Tailwind CSS. Users easily sign up, log in, and reserve cars, while admin privileges include adding cars with prices. Your journey to convenient car rentals starts here!
 
