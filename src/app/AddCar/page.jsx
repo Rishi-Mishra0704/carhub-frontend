@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createCar } from '@/src/redux/features/carsSlice';
 const AddCarPage = () => {
@@ -9,21 +9,32 @@ const AddCarPage = () => {
     color: '',
     plate_no: '',
     price: '',
-    user_id:'1',
+    user_id:'',
   });
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    // Fetch user_id from localStorage and update carData
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.id) {
+      setCarData((prevData) => ({
+        ...prevData,
+        user_id: user.id, // Convert to string if needed
+      }));
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createCar(carData));
-    console.log('Car data submitted:', carData);
+    console.log('Car data submitted:', carData); 
     setCarData({
       name: '',
       year: '',
       color: '',
       plate_no: '',
       price: '',
-      user_id:'1',
+      user_id: carData.user_id, 
     });
   };
 

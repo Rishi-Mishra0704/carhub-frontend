@@ -21,7 +21,6 @@ const Navbar = () => {
     }
   }, []);
 
-  console.log(userRole);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
