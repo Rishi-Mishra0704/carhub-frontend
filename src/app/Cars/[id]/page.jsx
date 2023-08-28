@@ -23,7 +23,7 @@ const CarsDetailsPage = () => {
   }
 
   return (
-    <div className="bg-gray-100 my-24">
+    <div className="bg-gray-100 my-12">
       <div className="bg-white rounded-lg shadow-md mb-4 p-6">
         <h2 className="text-[28px] font-bold text-gray-900 mb-6">{car.name}</h2>
         <div className="border-t border-gray-300 pt-4">
