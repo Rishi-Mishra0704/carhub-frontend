@@ -74,7 +74,7 @@ const LoginPage = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {errorMessage && <p className={styles.error_message}>{errorMessage}</p>}
+        {errorMessage && <p>{errorMessage}</p>}
         <div className="flex flex-col sm:items-center md:block">
           <button
             type="submit"
