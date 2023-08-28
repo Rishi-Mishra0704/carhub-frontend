@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { createCar } from '@/src/redux/features/carsSlice';
+import { useRouter } from 'next/navigation';
 const AddCarPage = () => {
   const [carData, setCarData] = useState({
     name: '',
@@ -12,6 +13,7 @@ const AddCarPage = () => {
     user_id:'',
   });
   const dispatch = useDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     // Fetch user_id from localStorage and update carData
@@ -27,7 +29,6 @@ const AddCarPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createCar(carData));
-    console.log('Car data submitted:', carData); 
     setCarData({
       name: '',
       year: '',
@@ -36,6 +37,7 @@ const AddCarPage = () => {
       price: '',
       user_id: carData.user_id, 
     });
+    router.push('/Cars');
   };
 
   const handleInputChange = (e) => {
