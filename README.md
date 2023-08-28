@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-<h1 align='center'> Carhub 🤘 </h1>
+<h1 align='center'> Carhub 🚗 🏢 </h1>
 
 
 <!-- TABLE OF CONTENTS -->
