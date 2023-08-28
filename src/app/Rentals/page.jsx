@@ -16,7 +16,7 @@ const RentalsPage = () => {
     dispatch(fetchCars());
     dispatch(fetchUsers());
   }, [dispatch]);
-
+  const isAdmin = localStorage.getItem("user");
   const getUserNameById = (userId) => {
     const user = users.find((user) => user.id === userId);
     return user ? user.name : "Unknown User";
@@ -26,11 +26,6 @@ const RentalsPage = () => {
   const getCarsNameById = (carId) => {
     const car = cars.find((car) => car.id === carId);
     return car ? car.name : "Unknown Car";
-  };
-
-  const isUserAdmin = (userId) => {
-    const user = users.find((user) => user.id === userId);
-    return user && user.role === "admin";
   };
 
   const handleDelete = (rentalId) => {
@@ -47,7 +42,7 @@ const RentalsPage = () => {
             <p>End Date: {rental.end_date}</p>
             <p>User: {getUserNameById(rental.user_id)}</p>
             <p>Car: {getCarsNameById(rental.car_id)}</p>
-            {isUserAdmin(rental.user_id) && (
+            {isAdmin && JSON.parse(isAdmin).role === "admin" && (
               <button onClick={() => handleDelete(rental.id)}>Delete</button>
             )}
           </li>

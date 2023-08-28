@@ -56,6 +56,9 @@ const Navbar = () => {
           <Link href="/Cars" className="text-white text-lg hover:underline">
             Cars
           </Link>
+          <Link href="/Rentals" className="text-white text-lg hover:underline">
+            Rentals
+          </Link>
           {userRole === "admin" && (
             <>
               <Link
@@ -63,12 +66,6 @@ const Navbar = () => {
                 className="block text-white text-lg hover:underline"
               >
                 Add Car
-              </Link>
-              <Link
-                href="/Rentals"
-                className="text-white text-lg hover:underline"
-              >
-                Rentals
               </Link>
             </>
           )}
@@ -140,6 +137,12 @@ const Navbar = () => {
           >
             Cars
           </Link>
+          <Link
+            href="/Rentals"
+            className="block text-white text-3xl hover:underline"
+          >
+            Rentals
+          </Link>
           {userRole === "admin" && (
             <>
               <Link
@@ -147,12 +150,6 @@ const Navbar = () => {
                 className="block text-white text-3xl hover:underline"
               >
                 Add Car
-              </Link>
-              <Link
-                href="/Rentals"
-                className="block text-white text-3xl hover:underline"
-              >
-                Rentals
               </Link>
             </>
           )}

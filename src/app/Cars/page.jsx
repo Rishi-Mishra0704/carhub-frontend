@@ -7,8 +7,8 @@ import { fetchCars, deleteCar } from "../../redux/features/carsSlice";
 const CarsPage = () => {
   const dispatch = useDispatch();
   const { cars, status } = useSelector((state) => state.cars);
+  
   const user = localStorage.getItem("user");
-
   useEffect(() => {
     // Fetch cars when the component mounts
     dispatch(fetchCars());
