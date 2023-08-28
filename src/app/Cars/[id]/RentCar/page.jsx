@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCities } from '../../redux/features/citiesSlice';
+import { fetchCities } from '../../../../redux/features/citiesSlice';
 
 const RentCarPage = () => {
   const dispatch = useDispatch();
