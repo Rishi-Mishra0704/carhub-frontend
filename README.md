@@ -40,13 +40,14 @@ The Full Stack CarHub Project: Redefining Car Rentals! Seamlessly built using Ru
 - Here is the link to the [Back-End](https://github.com/Rishi-Mishra0704/carhub-backend)
 
 ### Initial State of Kanban Board
+![carhubKanban](https://github.com/Rishi-Mishra0704/carhub-frontend/assets/41428579/0a5ac260-393d-41a3-952c-813cea6b91f4)
 
 
 - We started as a team of 2 team members.
   - [Rishi Mishra](https://github.com/Rishi-Mishra0704)
   - [Lucas Erkana](https://github.com/Lucas-Erkana)
  
-
+[Final Kanban Board](https://github.com/users/Rishi-Mishra0704/projects/2/views/1)
 
 ## Live Demo
 
